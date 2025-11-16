@@ -23,7 +23,7 @@ gem "jbuilder"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache"
@@ -42,12 +42,27 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
+# Use Slim templating engine [https://github.com/slim-template/slim-rails]
+gem "slim-rails"
+
 # Weather API client library for Ruby [https://open-meteo.com/en/docs] [https://github.com/open-meteo-ruby/open-meteo-ruby]
 gem "open-meteo"
 
+# OpenWeather API client for Ruby [https://github.com/dblock/open-weather-ruby-client]
+# Latest only provide current weather data, not forecast
+# gem "open-weather-ruby-client"
+
+# Geocoding library for Ruby [https://github.com/alexreisner/geocoder]
+# Not used due to certificate issues
+# gem "geocoder"
+
+# OpenSSL support for secure HTTP connections
+# Did not resolve certificate issues with Geocoder gem
+# gem "openssl"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
 
   # Audits gems for known security defects (use config/bundler-audit.yml to ignore issues)
   gem "bundler-audit", require: false
@@ -60,6 +75,7 @@ group :development, :test do
 
   # Standard Ruby style guide, linter, and formatter
   gem "standard", require: false
+  gem "standard-rails", require: false
 end
 
 group :development do

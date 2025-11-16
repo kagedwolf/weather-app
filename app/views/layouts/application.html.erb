@@ -23,7 +23,35 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/"><%= Rails.application.class.module_parent_name %></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-grow-1 container py-4">
+      <%= render 'shared/flash' %>
+      <%= yield %>
+    </main>
+
+    <footer class="bg-light mt-auto py-3">
+      <div class="container text-center small text-muted">
+        &copy; <%= Time.current.year %> <%= Rails.application.class.module_parent_name %>
+      </div>
+    </footer>
+
+    <%= console if Rails.env.development? && request.params[:console] %>
   </body>
 </html>
