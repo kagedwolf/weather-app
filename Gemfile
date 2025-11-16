@@ -81,6 +81,10 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  # LiveReload for browser auto-refresh in development
+  gem "rack-livereload"
+  gem "guard"
+  gem "guard-livereload"
 end
 
 group :test do
