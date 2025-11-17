@@ -11,6 +11,14 @@
 
 ## Explanations
 
+This app does not use a database. Instead, the user's location is managed with and ActiveModel using the session to store state.  Forecasts are only displayed if the address is able to be geocoded.
+
+### Time constraint compromises
+
+- View helpers and presenter/decorator objects should be used simplify views and handle unexpected errors.
+
+- A `Dockerfile` and `docker-compose.yml` would make the project easier for end users to setup and run.
+
 ### Why OpenStreetMap?
 
 The requirement "Accept an address as input" implies a user may include a street in the address.
@@ -20,6 +28,7 @@ Most weather APIs prefer `latitude` and `longitude` parameters. Some can be quer
 Geocoding the address prior to requesting the forecast adds complexity and a peformance hit. However, given the requirement, this seems like a reasonable compromise.
 
 A custom `OpenStreetMapClient` class was necessary to geolocate addresses because:
+
 - Gems specific to `OpenStreetMap` are no longer maintained
 - The `geocoder` gem failed with a `certificate verify failed` error
 - It was decided that creating a custom client would be faster than troubleshooting certificate issues
