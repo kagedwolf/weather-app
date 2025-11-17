@@ -1,0 +1,5 @@
+.display-2.fw-bold
+  = @location.forecast.current.item.temperature_2m
+  = @location.forecast.current.units.temperature_2m
+  = image_tag(weather_icon(@location.forecast.current.item.weather_code), style: "height: 10rem; width: 10rem; margin-top: -5.25rem; margin-bottom: -4rem;", alt: weather_description(@location.forecast.current.item.weather_code), title: weather_description(@location.forecast.current.item.weather_code))
+.display-6.fw-medium = weather_description(@location.forecast.current.item.weather_code, @location.forecast.current.item.is_day)

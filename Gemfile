@@ -48,6 +48,9 @@ gem "slim-rails"
 # Weather API client library for Ruby [https://open-meteo.com/en/docs] [https://github.com/open-meteo-ruby/open-meteo-ruby]
 gem "open-meteo"
 
+# Markdown parser and converter for Ruby [https://kramdown.gettalong.org/]
+gem "kramdown"
+
 # OpenWeather API client for Ruby [https://github.com/dblock/open-weather-ruby-client]
 # Latest only provide current weather data, not forecast
 # gem "open-weather-ruby-client"

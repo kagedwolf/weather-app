@@ -1,6 +1,10 @@
-h4 TODO
-ul.unstyled-list
-  li Add form with large search box
-  li Add submit button with search icon
-  li Add selector for temperature units (Celsius/Fahrenheit)
-  li About page should render README.md as HTML
+= render partial: "form"
+
+- if @location&.geocoded?
+  .fs-3 = @location.address
+  .fs-6.text-muted = @location.coordinates
+  - if @location.forecasted?
+    = render partial: "current_weather"
+    = render partial: "extended_forecast"
+- else
+    .text-warning Location not selected or could not be geocoded. Please try another address.

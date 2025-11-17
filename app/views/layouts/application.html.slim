@@ -31,7 +31,7 @@ html
         .collapse.navbar-collapse id="navbarSupportedContent"
           ul.navbar-nav.me-auto.mb-2.mb-lg-0
             li.nav-item
-              a.nav-link href="#" About
+              = link_to "About", about_path, class: "nav-link"
 
     main.flex-grow-1.container.py-4
       = render 'shared/flash'
@@ -39,9 +39,6 @@ html
 
     footer.bg-light.mt-auto.py-3
       .container.text-center.small.text-muted
-        | &copy;
-        = Time.current.year
-        |
-        = Rails.application.class.module_parent_name
+        | &copy;#{Time.current.year} Wicked Awesome Weather
 
     = console if Rails.env.development? && request.params[:console]

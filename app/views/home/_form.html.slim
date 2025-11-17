@@ -1,0 +1,14 @@
+= form_with model: @location, scope: :location, url: root_path, data: { turbo: false } do |form|
+  .row
+    .col-md-10
+      .form-floating.mb-3
+        = form.search_field :address, class: "form-control", type: "text", placeholder: "Cupertino, CA", autofocus: true
+        = form.label :address, "Location"
+    .col-md-2
+      .form-floating.mb-3
+        = form.select :temperature_unit, Forecast::TEMPERATURE_UNITS.map { |x| [x.titlecase, x] }, {}, class: "form-select"
+        = form.label :temperature_unit, "Temperature Unit"
+  .row
+    .col-md-10
+    .col-md-2.mb-3
+      = form.submit "Update Location", class: "btn btn-primary btn-lg"
