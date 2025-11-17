@@ -2,4 +2,14 @@
   = @location.forecast.current.item.temperature_2m
   = @location.forecast.current.units.temperature_2m
   = image_tag(weather_icon(@location.forecast.current.item.weather_code), style: "height: 10rem; width: 10rem; margin-top: -5.25rem; margin-bottom: -4rem;", alt: weather_description(@location.forecast.current.item.weather_code), title: weather_description(@location.forecast.current.item.weather_code))
-.display-6.fw-medium = weather_description(@location.forecast.current.item.weather_code, @location.forecast.current.item.is_day)
+span.display-6.fw-medium = weather_description(@location.forecast.current.item.weather_code, @location.forecast.current.item.is_day)
+
+- if @location.forecast.hourly && (hours = @location.forecast.hourly.items.select { |i| i.time.to_date == Time.zone.today }).any?
+  - low = hours.min_by(&:temperature_2m).temperature_2m
+  - high = hours.max_by(&:temperature_2m).temperature_2m
+  span.text-muted.ms-3
+    = low
+    = @location.forecast.hourly.units.temperature_2m
+    | /
+    = high
+    = @location.forecast.hourly.units.temperature_2m

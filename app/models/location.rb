@@ -74,6 +74,7 @@ class Location
       variables = {
         temperature_unit: temperature_unit, forecast_days: forecast_days,
         current: %i[temperature_2m precipitation weather_code is_day],
+        hourly: %i[temperature_2m precipitation weather_code],
         daily: %i[temperature_2m_max temperature_2m_min weather_code]
       }
       OpenMeteo::Forecast.new.get(location: location, variables: variables)

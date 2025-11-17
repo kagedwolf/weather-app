@@ -4,8 +4,8 @@
       tr
         th.col-4 Date
         th.col-4 Weather
-        th.col-2.text-end Min
-        th.col-2.text-end Max
+        th.col-2.text-end Low
+        th.col-2.text-end High
     tbody
       - @location.forecast.daily.items.each do |day|
         tr
