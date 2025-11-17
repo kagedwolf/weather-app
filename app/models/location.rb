@@ -3,6 +3,8 @@ class Location
   include ActiveModel::Attributes
   include ActiveModel::Dirty
 
+  TEMPERATURE_UNITS = %w[celsius fahrenheit].freeze
+
   attribute :address, :string
   attribute :longitude, :decimal
   attribute :latitude, :decimal
@@ -10,7 +12,7 @@ class Location
   attribute :temperature_unit, :string, default: "fahrenheit"
 
   validates :latitude, :longitude, presence: true, numericality: true
-  validates :temperature_unit, inclusion: {in: Forecast::TEMPERATURE_UNITS, message: "%{value} is not a valid temperature unit"}
+  validates :temperature_unit, inclusion: {in: TEMPERATURE_UNITS, message: "%{value} is not a valid temperature unit"}
 
   def geocoded?
     latitude.present? && longitude.present?
