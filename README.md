@@ -39,7 +39,7 @@ The current release of the `open-weather-ruby-client` gem only provides current 
 
 Interestingly, the main branch on github has does: https://github.com/dblock/open-weather-ruby-client/blob/master/lib/open_weather/endpoints/five_day_forecast.rb.
 
-The `open-meteo` gem worked immediately without needing to sign up for an API key.  I is also able to provide current weather as well as hourly and daily forecasts.
+The `open-meteo` gem worked immediately without needing to sign up for an API key.  It is also able to provide current weather as well as hourly and daily forecasts.
 
 ### AI generated code
 
