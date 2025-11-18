@@ -11,7 +11,7 @@
 
 ## Explanations
 
-This app does not use a database. Instead, the user's location is managed with and ActiveModel using the session to store state.  Forecasts are only displayed if the address is able to be geocoded.
+This app does not use a database. Instead, the user's location is managed with an ActiveModel using the session to store state.  Forecasts are only displayed if the address is able to be geocoded.
 
 ### Time constraint compromises
 
