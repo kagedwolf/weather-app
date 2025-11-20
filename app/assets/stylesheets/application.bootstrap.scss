@@ -1,2 +1,16 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+img {
+  &.weather-icon {
+    -webkit-filter: drop-shadow(1px 1px 0 #00000066) drop-shadow(-1px -1px 0 #00000066);
+    filter: drop-shadow(1px 1px 0 #00000066) drop-shadow(-1px -1px 0 #00000066);
+  }
+
+  &.weather-icon-lg {
+    height: 10rem;
+    width: 10rem;
+    margin-top: -5.25rem;
+    margin-bottom: -4rem;
+  }
+}

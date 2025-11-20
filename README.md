@@ -1,10 +1,17 @@
 # README
 
-> **NOTE: This code has been updated since was submitted.**
+> **NOTE: This code has been updated after it was submitted.**
+>
 > - BUGFIX: OpenMeteo was not being called correctly
 > - BUGFIX: Cache indicator code was accidentally removed
-> - Added the ability to clear location/session
-> - Fixed typos
+> - Added drop-shadows to weather icons - pure white icons were invisible
+> - Helper method for rendering markdown - "About" page renders this readme
+> - Consistent route and controller action names
+> - Consistent use of flash messages
+> - Just for fun:
+>   - Ability to clear location attributes and forecast
+>   - Ability to clear all cached forecasts
+>   - Helper methods for rendering weather icons and descriptions
 
 ## Requirements
 
@@ -21,7 +28,7 @@ This app does not use a database. Instead, the user's location is managed with a
 
 ### Time constraint compromises
 
-- View helpers and presenter/decorator objects should be used simplify views and handle unexpected errors.
+- View helpers and presenter/decorator objects should be used to simplify views and handle unexpected errors.
 
 - A `Dockerfile` and `docker-compose.yml` would make the project easier for end users to setup and run.
 
@@ -31,7 +38,7 @@ The requirement "Accept an address as input" implies a user may include a street
 
 Most weather APIs prefer `latitude` and `longitude` parameters. Some can be queried by `city` and `state`. Every API tested failed when a street was included.
 
-Geocoding the address prior to requesting the forecast adds complexity and a peformance hit. However, given the requirement, this seems like a reasonable compromise.
+Geocoding the address prior to requesting the forecast adds complexity and a performance hit. However, given the requirement, this seems like a reasonable compromise.
 
 A custom `OpenStreetMapClient` class was necessary to geolocate addresses because:
 
@@ -43,13 +50,13 @@ A custom `OpenStreetMapClient` class was necessary to geolocate addresses becaus
 
 The current release of the `open-weather-ruby-client` gem only provides current weather data.  It does not support the free forecasts endpoint (https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}).
 
-Interestingly, the main branch on github has does: https://github.com/dblock/open-weather-ruby-client/blob/master/lib/open_weather/endpoints/five_day_forecast.rb.
+Interestingly, the main branch on GitHub does: https://github.com/dblock/open-weather-ruby-client/blob/master/lib/open_weather/endpoints/five_day_forecast.rb.
 
 The `open-meteo` gem worked immediately without needing to sign up for an API key.  It is also able to provide current weather as well as hourly and daily forecasts.
 
 ### AI generated code
 
-This project was created with limited use of AI agents since the assumption is to showcase "my" skill level. The prompts below were used - using VSCode Copilot (GPT-5 mini).
+This project was created with limited use of AI agents since the assumption is to showcase "my" skill level. The prompts below were used, via VSCode Copilot (GPT-5 mini).
 
 - Add a basic application layout using bootstrap.
 - I've decided to use the slim-rails gem. Can you convert the erb view files to slim?

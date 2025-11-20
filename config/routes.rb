@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  post "/", to: "home#update", as: :update_location
-  get "/reset", to: "home#reset", as: :reset_location
+  post "/", to: "home#update_location", as: :update_location
+  post "/clear_cache", to: "home#clear_cache", as: :clear_cache
+  post "/reset_location", to: "home#reset_location", as: :reset_location
 
   get "about", to: "home#about", as: :about
 

@@ -1,7 +1,7 @@
 .display-2.fw-bold
   = @location.forecast.current.item.temperature_2m
   = @location.forecast.current.units.temperature_2m
-  = image_tag(weather_icon(@location.forecast.current.item.weather_code), style: "height: 10rem; width: 10rem; margin-top: -5.25rem; margin-bottom: -4rem;", alt: weather_description(@location.forecast.current.item.weather_code), title: weather_description(@location.forecast.current.item.weather_code))
+  = weather_icon_tag(@location.forecast.current.item.weather_code, @location.forecast.current.item.is_day, class: "weather-icon weather-icon-lg")
 span.display-6.fw-medium = weather_description(@location.forecast.current.item.weather_code, @location.forecast.current.item.is_day)
 
 - if @location.forecast.hourly && (hours = @location.forecast.hourly.items.select { |i| i.time.to_date == Time.zone.today }).any?

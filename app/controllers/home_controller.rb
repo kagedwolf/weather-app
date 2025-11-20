@@ -4,7 +4,12 @@ class HomeController < ApplicationController
   def index
   end
 
-  def update
+  def about
+    file = Rails.root.join("README.md")
+    @content = file.exist? ? file.read : "README file not found."
+  end
+
+  def update_location
     @location.assign_attributes(location_params)
     @location.geocode if @location.geocode?
 
@@ -16,14 +21,19 @@ class HomeController < ApplicationController
     redirect_to root_path
   end
 
-  def reset
-    @location.clear_cache!
-    session.delete(:location)
+  def clear_cache
+    Rails.cache.clear
+    flash[:notice] = "Cache cleared."
 
     redirect_to root_path
   end
 
-  def about
+  def reset_location
+    @location.clear_cache!
+    session.delete(:location)
+    flash[:notice] = "Location has been reset."
+
+    redirect_to root_path
   end
 
   private

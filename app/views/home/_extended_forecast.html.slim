@@ -10,7 +10,7 @@
       - @location.forecast.daily.items.each do |day|
         tr
           td = day.time.to_date.strftime("%A")
-          td = image_tag(weather_icon(day.weather_code), class: "weather-icon", alt: weather_description(day.weather_code), title: weather_description(day.weather_code))
+          td = weather_icon_tag(day.weather_code)
           td.text-end #{day.temperature_2m_min.truncate}#{@location.forecast.daily.units.temperature_2m_max}
           td.text-end #{day.temperature_2m_max.truncate}#{@location.forecast.daily.units.temperature_2m_max}
 
