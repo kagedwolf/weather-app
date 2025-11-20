@@ -13,6 +13,23 @@
 >   - Ability to clear all cached forecasts
 >   - Helper methods for rendering weather icons and descriptions
 
+## Setup
+
+1. Check out the repository
+
+```bash
+git@github.com:kagedwolf/weather-app.git
+```
+2. Start the server
+
+```bash
+bin/dev
+```
+
+3. Visit the site at http://localhost:3000
+
+4. Enjoy
+
 ## Requirements
 
 - [X] Must be done in Ruby on Rails
