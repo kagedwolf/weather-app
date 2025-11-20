@@ -1,3 +1,5 @@
+require "open_meteo"
+
 class Location
   include ActiveModel::Model
   include ActiveModel::Attributes
@@ -43,6 +45,11 @@ class Location
     @forecast ||= fetch_forecast
   end
 
+  def forecast_expires_at
+    Rails.cache.send(:read_entry, forecast_cache_key)
+      &.expires_at&.then { |t| Time.zone.at(t) }
+  end
+
   def save
     changes_applied # clears dirty tracking info
   end
@@ -53,6 +60,11 @@ class Location
 
   def rollback!
     restore_attributes # restores all previous values
+  end
+
+  def clear_cache!
+    Rails.logger.info("-------- CACHE DELETE: #{forecast_cache_key} --------")
+    Rails.cache.delete(forecast_cache_key)
   end
 
   private
@@ -67,9 +79,8 @@ class Location
   def fetch_forecast
     return unless geocoded?
 
-    cache_key = "forecast/#{latitude}/#{longitude}/#{temperature_unit}/#{forecast_days}"
-    Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
-      Rails.logger.info("-------- CACHE MISS: Fetching forecast for #{address} --------")
+    Rails.cache.fetch(forecast_cache_key, expires_in: 30.minutes) do
+      Rails.logger.info("-------- CACHE MISS: #{forecast_cache_key} --------")
       location = OpenMeteo::Entities::Location.new(latitude: latitude, longitude: longitude)
       variables = {
         temperature_unit: temperature_unit, forecast_days: forecast_days,
@@ -82,6 +93,10 @@ class Location
       Rails.logger.error("Error fetching forecast: #{e.message}")
       nil
     end
+  end
+
+  def forecast_cache_key
+    "forecast/#{latitude}/#{longitude}/#{temperature_unit}/#{forecast_days}"
   end
 
   # NOTES:

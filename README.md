@@ -1,5 +1,11 @@
 # README
 
+> **NOTE: This code has been updated since was submitted.**
+> - BUGFIX: OpenMeteo was not being called correctly
+> - BUGFIX: Cache indicator code was accidentally removed
+> - Added the ability to clear location/session
+> - Fixed typos
+
 ## Requirements
 
 - [X] Must be done in Ruby on Rails

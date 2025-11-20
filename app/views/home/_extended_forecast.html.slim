@@ -13,3 +13,7 @@
           td = image_tag(weather_icon(day.weather_code), class: "weather-icon", alt: weather_description(day.weather_code), title: weather_description(day.weather_code))
           td.text-end #{day.temperature_2m_min.truncate}#{@location.forecast.daily.units.temperature_2m_max}
           td.text-end #{day.temperature_2m_max.truncate}#{@location.forecast.daily.units.temperature_2m_max}
+
+.text-muted.text-end.mb-3
+  |> Forecast cached until
+  = @location.forecast_expires_at.in_time_zone("US/Pacific").strftime("%I:%M%p %Z")

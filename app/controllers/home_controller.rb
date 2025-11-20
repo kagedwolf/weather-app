@@ -1,7 +1,5 @@
 class HomeController < ApplicationController
-  before_action -> {
-    @location = Location.new(session.fetch(:location, {})).tap(&:reload!)
-  }
+  before_action :set_location
 
   def index
   end
@@ -18,6 +16,13 @@ class HomeController < ApplicationController
     redirect_to root_path
   end
 
+  def reset
+    @location.clear_cache!
+    session.delete(:location)
+
+    redirect_to root_path
+  end
+
   def about
   end
 
@@ -27,9 +32,11 @@ class HomeController < ApplicationController
     params.fetch(:location, {}).permit(:address, :latitude, :longitude, :temperature_unit, :forecast_days)
   end
 
-  def forecast
-    return unless @search.latitude.present? && @search.longitude.present?
-
-    Forecast.search(latitude: @search.latitude, longitude: @search.longitude)
+  def set_location
+    @location = Location.new(session.fetch(:location, {})).tap(&:reload!)
+  rescue => e
+    Rails.logger.error("Error loading location from session: #{e.message}")
+    session.delete(:location)
+    @location = Location.new
   end
 end

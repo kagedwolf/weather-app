@@ -1,4 +1,4 @@
-= form_with model: @location, scope: :location, url: root_path, data: { turbo: false } do |form|
+= form_with model: @location, scope: :location, url: update_location_path, data: { turbo: false } do |form|
   .row
     .col-md-10
       .form-floating.mb-3
@@ -8,7 +8,6 @@
       .form-floating.mb-3
         = form.select :temperature_unit, Location::TEMPERATURE_UNITS.map { |x| [x.titlecase, x] }, {}, class: "form-select"
         = form.label :temperature_unit, "Temperature Unit"
-  .row
-    .col-md-10
-    .col-md-2.mb-3
-      = form.submit "Update Location", class: "btn btn-primary btn-lg"
+  .d-flex.mb-3
+    = link_to "Reset Location", reset_location_path, class: "btn btn-outline-secondary me-auto"
+    = form.submit "Update Location", class: "btn btn-primary"
